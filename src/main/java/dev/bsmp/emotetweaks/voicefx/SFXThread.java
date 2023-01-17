@@ -2,9 +2,8 @@ package dev.bsmp.emotetweaks.voicefx;
 
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.network.PacketByteBuf;
-
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.FriendlyByteBuf;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.UUID;
@@ -47,14 +46,14 @@ public class SFXThread extends Thread {
             }
 
             //Send Data Packet
-            PacketByteBuf buf = PacketByteBufs.create();
-            buf.writeUuid(uuid);
+            FriendlyByteBuf buf = PacketByteBufs.create();
+            buf.writeUUID(uuid);
             buf.writeByteArray(encoder.encode(frame));
             buf.writeLong(framePosition);
             ClientPlayNetworking.send(SFXPacket.PACKET_ID, buf);
 
             short[] finalFrame = frame;
-            MinecraftClient.getInstance().executeSync(() -> ClientManager.getClient().processSoundPacket(new LocationSoundPacket(uuid, finalFrame, MinecraftClient.getInstance().player.getPos(), 15f, null)));
+            Minecraft.getInstance().executeIfPossible(() -> ClientManager.getClient().processSoundPacket(new LocationSoundPacket(uuid, finalFrame, Minecraft.getInstance().player.position(), 15f, null)));
 
             ++framePosition;
             long waitTimestamp = startTime + (long) framePosition * 20000000L;

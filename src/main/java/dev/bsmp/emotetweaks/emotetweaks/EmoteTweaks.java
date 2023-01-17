@@ -1,19 +1,12 @@
 package dev.bsmp.emotetweaks.emotetweaks;
 
+import dev.bsmp.emotetweaks.voicefx.SFXPacket;
+import it.unimi.dsi.fastutil.objects.Object2BooleanOpenHashMap;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.util.Identifier;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
-
-import dev.bsmp.emotetweaks.voicefx.SFXPacket;
-import dev.bsmp.emotetweaks.voicefx.SoundPlugin;
-import io.github.kosmx.emotes.api.events.client.ClientEmoteEvents;
-import it.unimi.dsi.fastutil.objects.Object2BooleanOpenHashMap;
 
 public class EmoteTweaks implements ModInitializer {
     public static HashMap<Integer, String> MODIFIERS = new HashMap<>();

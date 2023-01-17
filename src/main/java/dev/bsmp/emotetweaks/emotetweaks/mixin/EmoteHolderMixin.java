@@ -1,9 +1,5 @@
 package dev.bsmp.emotetweaks.emotetweaks.mixin;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.util.InputUtil;
-
 import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-
+import com.mojang.blaze3d.platform.InputConstants;
 import dev.bsmp.emotetweaks.emotetweaks.EmoteTweaks;
 import dev.bsmp.emotetweaks.emotetweaks.IMixedKey;
 import dev.kosmx.playerAnim.core.data.KeyframeAnimation;
@@ -23,6 +19,8 @@ import io.github.kosmx.emotes.executor.emotePlayer.IEmotePlayerEntity;
 import io.github.kosmx.emotes.main.EmoteHolder;
 import io.github.kosmx.emotes.main.config.ClientConfig;
 import io.github.kosmx.emotes.main.network.ClientEmotePlay;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 
 @Mixin(value = EmoteHolder.class, remap = false)
 public abstract class EmoteHolderMixin {
@@ -53,9 +51,9 @@ public abstract class EmoteHolderMixin {
             ((IMixedKey) key).setModifier(2);
         else if(Screen.hasShiftDown())
             ((IMixedKey) key).setModifier(1);
-        else if(InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_LEFT_ALT))
+        else if(InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_LEFT_ALT))
             ((IMixedKey) key).setModifier(4);
-        else if(InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_RIGHT_ALT))
+        else if(InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_RIGHT_ALT))
             ((IMixedKey) key).setModifier(6);
     }
 
