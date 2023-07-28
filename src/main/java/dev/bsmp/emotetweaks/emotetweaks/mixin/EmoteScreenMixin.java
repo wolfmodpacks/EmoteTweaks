@@ -1,5 +1,6 @@
 package dev.bsmp.emotetweaks.emotetweaks.mixin;
 
+import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,7 +19,6 @@ import io.github.kosmx.emotes.main.screen.AbstractScreenLogic;
 import io.github.kosmx.emotes.main.screen.EmoteMenu;
 import io.github.kosmx.emotes.main.screen.IScreenSlave;
 import io.github.kosmx.emotes.main.screen.widget.IEmoteListWidgetHelper;
-import net.minecraft.network.chat.TextComponent;
 
 @Mixin(value = EmoteMenu.class, remap = false)
 public abstract class EmoteScreenMixin<MATRIX, SCREEN, WIDGET> extends AbstractScreenLogic<MATRIX, SCREEN> implements IEmoteScreen {
@@ -62,7 +62,7 @@ public abstract class EmoteScreenMixin<MATRIX, SCREEN, WIDGET> extends AbstractS
             }
         }
 
-        textDraw(matrices, new TextImpl(new TextComponent("Ignore Sneaking:").plainCopy()), screen.getWidth() / 2 + 8, 100, 0xFFFFFF);
+        textDraw(matrices, new TextImpl(Component.literal("Ignore Sneaking:").plainCopy()), screen.getWidth() / 2 + 8, 100, 0xFFFFFF);
     }
 
     @Inject(method = "saveConfig", at = @At("HEAD"))

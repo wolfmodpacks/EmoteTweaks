@@ -1,5 +1,6 @@
 package dev.bsmp.emotetweaks.emotetweaks.mixin;
 
+import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -8,7 +9,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Objects;
-import net.minecraft.network.chat.TextComponent;
 import com.mojang.blaze3d.platform.InputConstants;
 import dev.bsmp.emotetweaks.emotetweaks.EmoteTweaks;
 import dev.bsmp.emotetweaks.emotetweaks.IMixedKey;
@@ -40,7 +40,7 @@ public abstract class KeyMixin implements IMixedKey {
     @Inject(method = "getLocalizedText", at = @At("RETURN"), cancellable = true)
     private void getText(CallbackInfoReturnable<Text> cir) {
         if(modifier != 0)
-            cir.setReturnValue(new TextImpl(new TextComponent(EmoteTweaks.MODIFIERS.get(modifier) + " + ").plainCopy()).append(cir.getReturnValue()));
+            cir.setReturnValue(new TextImpl(Component.literal(EmoteTweaks.MODIFIERS.get(modifier) + " + ").plainCopy()).append(cir.getReturnValue()));
     }
 
     @Inject(method = "getTranslationKey", at = @At("RETURN"), cancellable = true)
