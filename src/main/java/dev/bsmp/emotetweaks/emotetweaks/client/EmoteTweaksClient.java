@@ -12,8 +12,9 @@ public class EmoteTweaksClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ClientEmoteEvents.EMOTE_PLAY.register((emoteData, userID) -> {
-            if(userID == Minecraft.getInstance().player.getUUID())
+            if(userID == Minecraft.getInstance().player.getUUID()) {
                 SoundPlugin.stopSounds();
+            }
         });
     }
 }

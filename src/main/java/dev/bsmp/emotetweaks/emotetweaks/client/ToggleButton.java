@@ -1,13 +1,12 @@
 package dev.bsmp.emotetweaks.emotetweaks.client;
 
-import java.util.UUID;
-
-import net.minecraft.network.chat.Component;
 import dev.bsmp.emotetweaks.emotetweaks.EmoteTweaks;
 import dev.bsmp.emotetweaks.emotetweaks.IEmoteScreen;
 import io.github.kosmx.emotes.arch.gui.screen.IButtonImpl;
-import io.github.kosmx.emotes.executor.dataTypes.Text;
 import io.github.kosmx.emotes.main.screen.EmoteMenu;
+import net.minecraft.network.chat.Component;
+
+import java.util.UUID;
 
 public class ToggleButton extends IButtonImpl {
     public EmoteMenu parent;
@@ -27,7 +26,7 @@ public class ToggleButton extends IButtonImpl {
     public void setCurrentState(boolean newState) {
         currentState = newState;
         parent.save = true;
-        setMessage(Component.literal(""+currentState));
+        setMessage(Component.literal("" + currentState));
         UUID uuid = ((IEmoteScreen)parent).getEmoteList().getSelectedEntry().getEmote().getUuid();
         EmoteTweaks.CROUCH_CANCEL_MAP.put(uuid, currentState);
     }

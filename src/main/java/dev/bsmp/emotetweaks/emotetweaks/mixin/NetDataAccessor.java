@@ -1,14 +1,13 @@
 package dev.bsmp.emotetweaks.emotetweaks.mixin;
 
+import io.github.kosmx.emotes.common.network.objects.NetData;
+import java.util.HashMap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-import java.util.HashMap;
-
-import io.github.kosmx.emotes.common.network.objects.NetData;
-
-@Mixin(value = NetData.class, remap = false)
+@Mixin(value = { NetData.class }, remap = false)
 public interface NetDataAccessor {
     @Accessor
     HashMap<String, Object> getExtraData();
 }
+

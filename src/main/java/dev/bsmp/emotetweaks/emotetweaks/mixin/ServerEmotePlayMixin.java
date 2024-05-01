@@ -1,19 +1,14 @@
 package dev.bsmp.emotetweaks.emotetweaks.mixin;
 
+import dev.kosmx.playerAnim.core.data.KeyframeAnimation;
+import dev.kosmx.playerAnim.core.util.Pair;
+import io.github.kosmx.emotes.server.network.AbstractServerEmotePlay;
+import io.github.kosmx.emotes.server.network.IServerNetworkInstance;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.util.HashMap;
-
-import dev.bsmp.emotetweaks.emotetweaks.EmoteTweaks;
-import dev.kosmx.playerAnim.core.data.KeyframeAnimation;
-import dev.kosmx.playerAnim.core.util.Pair;
-import io.github.kosmx.emotes.server.network.AbstractServerEmotePlay;
-import io.github.kosmx.emotes.server.network.EmotePlayTracker;
-import io.github.kosmx.emotes.server.network.IServerNetworkInstance;
 
 @Mixin(value = AbstractServerEmotePlay.class, remap = false)
 public abstract class ServerEmotePlayMixin<P> {
